@@ -1,8 +1,8 @@
-import 'dart:html';
+//import 'dart:html';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+//import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(new MaterialApp(
@@ -12,7 +12,7 @@ void main() {
     }
   ));
 }
-
+String name;
 class HomePage extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -32,7 +32,10 @@ class HomePage extends StatelessWidget {
                   hintText: "Type in here!"
                 ),
               
-              onSubmitted: (String str) {Navigator.of(context).pushNamed("/currentweatherpage");}
+              onSubmitted: (String str) {
+                name = str;
+                Navigator.of(context).pushNamed("/currentweatherpage");
+                }
               )
             ]
           ),
@@ -42,8 +45,9 @@ class HomePage extends StatelessWidget {
   }
 }
 
+
 getData()async{
-  SharedPreferences preferences = await SharedPreferences.getInstance();
+  //SharedPreferences preferences = await SharedPreferences.getInstance();
 }
 
 class CurrentWeatherPage extends StatefulWidget {
@@ -86,8 +90,13 @@ class _CurrentWeatherPageState extends State<CurrentWeatherPage> {
         Center(
           child: Center(child:
            Text (
-            greeting  + "\n\n" + report,textAlign: TextAlign.center,style: new TextStyle(fontWeight: FontWeight.bold,fontSize: 25.0),)),
-          ),
+            greeting  + " " + name + "                 "+"\n\n" + report + "\n\n\n Do ensure to take an umbrella out today. \n High possibility of rain fall.",
+            textAlign: TextAlign.center,
+            style: new TextStyle(fontWeight: FontWeight.bold,
+            fontSize: 25.0,
+            color: Colors.red),
+            ),
+          ),),
       ],
     ));  
   }
