@@ -1,4 +1,4 @@
-//import 'dart:html';
+import 'dart:html';
 //import 'dart:developer';
 //import 'dart:ffi';
 import 'dart:ui';
@@ -25,7 +25,7 @@ class HomePage extends StatefulWidget {
   @override
   HomePageState createState() => HomePageState();
 }
-  
+  String username = "";
 class HomePageState extends State<HomePage> {
   // This widget is the root of your application.
 
@@ -33,7 +33,6 @@ class HomePageState extends State<HomePage> {
 
     SharedPreferences logindata;
     bool newUser;
-
     @override
   void initState(){
     super.initState();
@@ -63,7 +62,7 @@ class HomePageState extends State<HomePage> {
                 textColor: Colors.white, 
                 color: Colors.blueGrey, 
                 onPressed: () {
-                  String username = username_controller.text;
+                  username = username_controller.text;
 
                   if (username != ""){
                     print("successful!");
@@ -83,8 +82,11 @@ class HomePageState extends State<HomePage> {
   getData () async{
     logindata = await SharedPreferences.getInstance();
     newUser = (logindata.getBool('login') ?? true);
+    logindata = await SharedPreferences.getInstance();
+    username = (logindata.getString('username'));
 
     print(newUser);
+    print(username);
       if (newUser == false){
         Navigator.of(context).pushNamed("/currentweatherpage");
       }
@@ -136,7 +138,7 @@ class _CurrentWeatherPageState extends State<CurrentWeatherPage> {
         Center(
           child: Center(child:
            Text (
-            greeting  + "\n\n" + report + "\n\n\n Do ensure to take an umbrella out today. \n High possibility of rain fall.",
+            greeting  + " " + username + "\n\n" + report + "\n\n\n Do ensure to take an umbrella out today. \n High possibility of rain fall.",
             textAlign: TextAlign.center,
             style: new TextStyle(fontWeight: FontWeight.bold,
             fontSize: 25.0,

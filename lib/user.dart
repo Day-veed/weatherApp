@@ -1,5 +1,5 @@
 //import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+/*import 'package:shared_preferences/shared_preferences.dart';
 
 class UserSimplePreferences {
   static SharedPreferences _preferences;
@@ -13,4 +13,4 @@ class UserSimplePreferences {
     await _preferences.setString(_keyUsername, username);
 
     static String getUsername()=> _preferences.getString(_keyUsername);
-}
+}*/
